@@ -4,7 +4,7 @@ import { zValidator } from "@hono/zod-validator";
 import { env } from "hono/adapter";
 
 // config
-import { collection, configs } from "@/config";
+import { collection, serverConfigs } from "@/configs";
 
 // constants
 import { ErrorMessage } from "@/constants";
@@ -114,9 +114,9 @@ app.get("/metrics/chart", async (c) => {
 });
 
 // const port = 8788;
-console.log(`Server is running on ${configs.HOST}:${configs.PORT}`);
+console.log(`Server is running on ${serverConfigs.HOST}:${serverConfigs.PORT}`);
 
 serve({
   fetch: app.fetch,
-  port: configs.PORT,
+  port: serverConfigs.PORT,
 });

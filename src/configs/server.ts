@@ -3,7 +3,7 @@ import env from "env-var";
 
 dotenv.config();
 
-export const configs = {
+export const serverConfigs = {
   DATABASE_URL:
     env.get("DATABASE_URL").asString() || "mongodb://localhost:27017",
   HOST: env.get("HOST").asString() || "http://localhost",
