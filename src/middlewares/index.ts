@@ -1,2 +1,2 @@
 export * from "./validate-param";
-export * from "./validate-query";
+export * from "./metrics";
