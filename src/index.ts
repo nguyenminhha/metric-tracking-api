@@ -1,7 +1,7 @@
 import { serve } from "@hono/node-server";
-import { Hono } from "hono";
+import { Hono, Next } from "hono";
 import { zValidator } from "@hono/zod-validator";
-import { env } from "hono/adapter";
+import { cors } from "hono/cors";
 
 // config
 import { collection, serverConfigs } from "@/configs";
@@ -20,6 +20,15 @@ import {
 } from "@/util";
 
 const app = new Hono();
+
+app.use("*", async (ctx, next: Next) => {
+  const corsMiddleware = cors({
+    origin: "*",
+    allowHeaders: ["Cache-Control", "Content-Type", "Authorization"],
+    allowMethods: ["GET", "HEAD", "PUT", "POST", "DELETE"],
+  });
+  return corsMiddleware(ctx, next);
+});
 
 app.get("/", (c) => {
   return c.text("Welcome to Metrics Tracking API!");
